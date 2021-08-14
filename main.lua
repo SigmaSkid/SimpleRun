@@ -1,8 +1,16 @@
 -- I hate lua, let's switch to c++ 
 -- I wish this was simple to make
 
--- default walking speed is 7
-TargetVel = 9
+-- 7 is default walking speed
+TargetVel = 7
+
+function init() 
+    -- force set default value just in case.
+    if GetFloat("savegame.mod.simplerunscale") == 0 then
+        SetFloat("savegame.mod.simplerunscale", 28)
+    end
+end
+
 
 -- Called once every fixed tick, 60tps
 function update(dt)
@@ -35,6 +43,8 @@ function update(dt)
     if VecLength(velocity) < 6.5 then
         do return end
     end
+
+    TargetVel = 7 + (7 * GetFloat("savegame.mod.simplerunscale") / 100)
 
     -- just a fail safe
     if VecLength(velocity) > TargetVel then
