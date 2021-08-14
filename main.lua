@@ -16,20 +16,25 @@ function update(dt)
         do return end
     end
 
+    if InputDown("down")  then
+        do return end
+    end
+
     velocity = GetPlayerVelocity()
 
-    -- ghetto falling check
+    -- ghetto ground check
     if velocity[2] ~= 0 then
         do return end
     end 
 
-    -- don't apply if our velocity is too low, use case: wall in front of our face
+    -- don't apply if our velocity is too low,
+    -- cuz there is wall in front of our face
     if VecLength(velocity) < 6.5 then
         do return end
     end
 
     -- just a fail safe
-    if VecLength(velocity) > 8.5 then
+    if VecLength(velocity) > 10 then
         do return end
     end
 
@@ -40,13 +45,13 @@ function update(dt)
 
     -- moving left & right is cool.
     if InputDown("left")  then
-        y = y + 45
+        y = y + 30
         if y > 180 then
             y = y - 360
         end
     end
     if InputDown("right")  then
-        y = y - 45
+        y = y - 30
         if y < -180 then
             y = y + 360
         end
@@ -72,39 +77,4 @@ function update(dt)
     velocity[2] = GetPlayerVelocity()[2]
         
     SetPlayerVelocity(velocity)
-end
-
--- debug, don't upload to workshop this bs
-function draw()
-    UiPush()
-	UiAlign("center middle")
-	UiTranslate(UiCenter(), UiMiddle());
-    UiFont("bold.ttf", 24)
-    velocity = GetPlayerVelocity()
-    UiText(tostring(VecLength(velocity)), true)
-
-    rot = GetCameraTransform().rot
-    x, y, z = GetQuatEuler(rot)
-
-    UiText(tostring(x), true)
-    UiText(tostring(y), true)
-    UiText(tostring(velocity[1]), true)
-    UiText(tostring(velocity[3]), true)
-
-	rady = math.rad(y)
-	siny = math.sin(rady)
-	cosy = math.cos(rady)
-    radx = math.rad(x)
-	sinx = math.sin(radx)
-	cosx = math.cos(radx)
-
-    forwardx = cosx * cosy
-    forwardy = cosx * siny
-    forwardz = -sinx
-
-    UiText(tostring(forwardx), true)
-    UiText(tostring(forwardy), true)
-    UiText(tostring(forwardz), true)
-
-    UiPop()
 end
