@@ -40,7 +40,7 @@ function update(dt)
 
     -- don't apply if our velocity is too low,
     -- cuz there is wall in front of our face
-    if VecLength(velocity) < 6.5 then
+    if VecLength(velocity) < 5 then
         do return end
     end
 
