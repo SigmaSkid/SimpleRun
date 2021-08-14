@@ -1,0 +1,4 @@
+name = SimpleRun
+author = LilWeaboo
+description = Allows players to run.
+tags = Gameplay
