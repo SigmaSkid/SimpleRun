@@ -1,6 +1,9 @@
 -- I hate lua, let's switch to c++ 
 -- I wish this was simple to make
 
+-- default walking speed is 7
+TargetVel = 9
+
 -- Called once every fixed tick, 60tps
 function update(dt)
     -- don't update in vehicles
@@ -34,7 +37,7 @@ function update(dt)
     end
 
     -- just a fail safe
-    if VecLength(velocity) > 10 then
+    if VecLength(velocity) > TargetVel then
         do return end
     end
 
@@ -70,9 +73,8 @@ function update(dt)
     forward[3] = -cosx * cosy
     forward[1] = -cosx * siny
 
-    -- default movement velocity is 7
-    -- giving us nice 28% speed boost
-    velocity = VecScale(forward, 9)
+    -- apply velocity scale
+    velocity = VecScale(forward, TargetVel)
 
     velocity[2] = GetPlayerVelocity()[2]
         
