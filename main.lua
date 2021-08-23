@@ -76,12 +76,11 @@ function update(dt)
     local rady = math.rad(y)
 	local siny = math.sin(rady)
 	local cosy = math.cos(rady)
-	local cosx = math.cos(0)
 
     -- change our cool math to something the game can use
     local forward = Vec(0,0,0)
-    forward[3] = -cosx * cosy
-    forward[1] = -cosx * siny
+    forward[3] = -cosy
+    forward[1] = -siny
 
     -- apply velocity scale
     velocity = VecScale(forward, TargetVel)
@@ -89,38 +88,4 @@ function update(dt)
     velocity[2] = GetPlayerVelocity()[2]
         
     SetPlayerVelocity(velocity)
-end
-
-function draw()
-    UiPush()
-	UiAlign("center middle")
-	UiTranslate(UiCenter(), UiMiddle());
-    UiFont("bold.ttf", 24)
-    local velocity = GetPlayerVelocity()
-    UiText(tostring(VecLength(velocity)), true)
-
-    local rot = GetCameraTransform().rot
-    local x, y, z = GetQuatEuler(rot)
-
-    UiText(tostring(x), true)
-    UiText(tostring(y), true)
-    UiText(tostring(velocity[1]), true)
-    UiText(tostring(velocity[3]), true)
-
-	local rady = math.rad(y)
-	local siny = math.sin(rady)
-	local cosy = math.cos(rady)
-    local radx = math.rad(x)
-	local sinx = math.sin(radx)
-	local cosx = math.cos(radx)
-
-    local forwardx = cosx * cosy
-    local forwardy = cosx * siny
-    local forwardz = -sinx
-
-    UiText(tostring(forwardx), true)
-    UiText(tostring(forwardy), true)
-    UiText(tostring(forwardz), true)
-
-    UiPop()
 end
