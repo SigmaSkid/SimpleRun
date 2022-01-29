@@ -15,7 +15,7 @@ function update(dt)
         return
     end
 
-    -- some ghetto button sanity checks
+    -- input checks
     if not InputDown("shift") then
         return
     end
@@ -33,11 +33,6 @@ function update(dt)
     end
 
     local velocity = GetPlayerVelocity()
-
-    -- ghetto ground check, breaks on uneven surfaces, bridges, etc. find a better method
-    if velocity[2] ~= 0 then
-        return
-    end 
 
     -- don't apply if our velocity is too low
     if VecLength(velocity) < 5 then
@@ -87,5 +82,39 @@ function update(dt)
 
     velocity[2] = GetPlayerVelocity()[2]
         
-    SetPlayerVelocity(velocity)
+    SetPlayerGroundVelocity(velocity)
+end
+
+function draw()
+    UiPush()
+	UiAlign("center middle")
+	UiTranslate(UiCenter(), UiMiddle());
+    UiFont("bold.ttf", 24)
+    local velocity = GetPlayerVelocity()
+    UiText(tostring(VecLength(velocity)), true)
+
+    local rot = GetCameraTransform().rot
+    local x, y, z = GetQuatEuler(rot)
+
+    UiText(tostring(x), true)
+    UiText(tostring(y), true)
+    UiText(tostring(velocity[1]), true)
+    UiText(tostring(velocity[3]), true)
+
+	local rady = math.rad(y)
+	local siny = math.sin(rady)
+	local cosy = math.cos(rady)
+    local radx = math.rad(x)
+	local sinx = math.sin(radx)
+	local cosx = math.cos(radx)
+
+    local forwardx = cosx * cosy
+    local forwardy = cosx * siny
+    local forwardz = -sinx
+
+    UiText(tostring(forwardx), true)
+    UiText(tostring(forwardy), true)
+    UiText(tostring(forwardz), true)
+
+    UiPop()
 end
