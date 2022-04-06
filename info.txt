@@ -1,4 +1,4 @@
 name = SimpleRun
 author = LilWeaboo
-description = Allows players to run. Speed modifier is customizable in mod options.
+description = Allows players to run. Settings customizable in mod options.
 tags = Gameplay

@@ -32,6 +32,19 @@ function draw()
     local val = optionsSlider("savegame.mod.simplerunscale", 28, 10, 100)
     UiTranslate(120, 0)
     UiText(val)
+
+    local CfgString = "savegame.mod.simplerunautorun"
+    -- i dind't bruteforce this...
+    UiTranslate(-480, 100)
+
+    if GetBool(CfgString) then
+		if UiTextButton("Disable Autorun", 110, 40) then
+			SetBool(CfgString, false) end
+    else
+    	if UiTextButton("Enable Autorun", 110, 40) then
+			SetBool(CfgString, true) end
+    end
+
     UiPop()
     UiPop()
 end
