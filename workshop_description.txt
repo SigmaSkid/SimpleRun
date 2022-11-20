@@ -1,0 +1,14 @@
+Allows players to run.
+
+If there are any bugs/suggestions/tips please feel free to comment.
+Random dislikes without any feedback about the issue at hand don't really help me improve this project
+
+Settings:
+Speed Bonus %, basically how much faster you run, (default speed * (100% + bonus%))
+Autorun is a feature that makes it so you don't have to hold shift for longer than necessary.
+
+Step1. Enable the mod.
+Step?. Customize your settings in mod options.
+Step2. Hold shift in game.
+Step3. ???
+Step4. Profit
